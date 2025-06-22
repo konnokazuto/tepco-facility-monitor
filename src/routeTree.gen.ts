@@ -15,7 +15,6 @@ import { Route as InstallationImport } from "./routes/installation";
 import { Route as ApplicationImport } from "./routes/application";
 import { Route as AdminImport } from "./routes/admin";
 import { Route as IndexImport } from "./routes/index";
-import { Route as testsInstallationTestImport } from "./routes/__tests__/installation.test";
 
 // Create/Update Routes
 
@@ -40,12 +39,6 @@ const AdminRoute = AdminImport.update({
 const IndexRoute = IndexImport.update({
   id: "/",
   path: "/",
-  getParentRoute: () => rootRoute
-} as any);
-
-const testsInstallationTestRoute = testsInstallationTestImport.update({
-  id: "/__tests__/installation/test",
-  path: "/installation/test",
   getParentRoute: () => rootRoute
 } as any);
 
@@ -81,13 +74,6 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof InstallationImport;
       parentRoute: typeof rootRoute;
     };
-    "/__tests__/installation/test": {
-      id: "/__tests__/installation/test";
-      path: "/installation/test";
-      fullPath: "/installation/test";
-      preLoaderRoute: typeof testsInstallationTestImport;
-      parentRoute: typeof rootRoute;
-    };
   }
 }
 
@@ -98,7 +84,6 @@ export interface FileRoutesByFullPath {
   "/admin": typeof AdminRoute;
   "/application": typeof ApplicationRoute;
   "/installation": typeof InstallationRoute;
-  "/installation/test": typeof testsInstallationTestRoute;
 }
 
 export interface FileRoutesByTo {
@@ -106,7 +91,6 @@ export interface FileRoutesByTo {
   "/admin": typeof AdminRoute;
   "/application": typeof ApplicationRoute;
   "/installation": typeof InstallationRoute;
-  "/installation/test": typeof testsInstallationTestRoute;
 }
 
 export interface FileRoutesById {
@@ -115,15 +99,14 @@ export interface FileRoutesById {
   "/admin": typeof AdminRoute;
   "/application": typeof ApplicationRoute;
   "/installation": typeof InstallationRoute;
-  "/__tests__/installation/test": typeof testsInstallationTestRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/admin" | "/application" | "/installation" | "/installation/test";
+  fullPaths: "/" | "/admin" | "/application" | "/installation";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/admin" | "/application" | "/installation" | "/installation/test";
-  id: "__root__" | "/" | "/admin" | "/application" | "/installation" | "/__tests__/installation/test";
+  to: "/" | "/admin" | "/application" | "/installation";
+  id: "__root__" | "/" | "/admin" | "/application" | "/installation";
   fileRoutesById: FileRoutesById;
 }
 
@@ -132,15 +115,13 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute;
   ApplicationRoute: typeof ApplicationRoute;
   InstallationRoute: typeof InstallationRoute;
-  testsInstallationTestRoute: typeof testsInstallationTestRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   ApplicationRoute: ApplicationRoute,
-  InstallationRoute: InstallationRoute,
-  testsInstallationTestRoute: testsInstallationTestRoute
+  InstallationRoute: InstallationRoute
 };
 
 export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
@@ -154,8 +135,7 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
         "/",
         "/admin",
         "/application",
-        "/installation",
-        "/__tests__/installation/test"
+        "/installation"
       ]
     },
     "/": {
@@ -169,9 +149,6 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     },
     "/installation": {
       "filePath": "installation.tsx"
-    },
-    "/__tests__/installation/test": {
-      "filePath": "__tests__/installation.test.tsx"
     }
   }
 }

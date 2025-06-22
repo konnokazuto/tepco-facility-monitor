@@ -52,6 +52,7 @@ tepco-facility-monitor/
 │   ├── hooks/             # カスタムフック
 │   ├── lib/               # ユーティリティ関数
 │   ├── routes/            # ルーティング設定
+│   ├── tests/             # テストファイル
 │   ├── App.tsx            # メインアプリケーション
 │   ├── index.css          # グローバルスタイル
 │   ├── main.tsx           # エントリーポイント
@@ -64,7 +65,8 @@ tepco-facility-monitor/
 ├── tsconfig.app.json      # アプリケーション用TypeScript設定
 ├── tsconfig.json          # TypeScript設定（親）
 ├── tsconfig.node.json     # Node.js環境用TypeScript設定
-└── vite.config.ts         # Vite設定
+├── vite.config.ts         # Vite設定
+└── vitest.config.ts       # Vitest設定
 ```
 
 ## 開発ガイドライン

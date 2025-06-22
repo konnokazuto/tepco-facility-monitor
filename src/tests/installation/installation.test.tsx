@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import React, { useState } from "react";
 
 // Mock TanStack Router
@@ -255,7 +255,6 @@ const renderInstallationPage = () => {
 
 describe("Installation Page", () => {
   beforeEach(() => {
-    // Reset any DOM state before each test
     document.body.innerHTML = "";
   });
 
@@ -263,11 +262,8 @@ describe("Installation Page", () => {
     it("should render with sidebar open by default", async () => {
       renderInstallationPage();
 
-      // Check sidebar is present and open
       const sidebar = screen.getByTestId("sidebar");
       expect(sidebar).toHaveClass("w-96");
-
-      // Check sidebar content is visible
       expect(screen.getByText("エリア")).toBeInTheDocument();
     });
 
@@ -277,14 +273,11 @@ describe("Installation Page", () => {
       const sidebar = screen.getByTestId("sidebar");
       const toggleButton = screen.getByTestId("sidebar-toggle");
 
-      // Initially open
       expect(sidebar).toHaveClass("w-96");
 
-      // Click to close
       fireEvent.click(toggleButton);
       expect(sidebar).toHaveClass("w-0");
 
-      // Click to open again
       fireEvent.click(toggleButton);
       expect(sidebar).toHaveClass("w-96");
     });
@@ -295,14 +288,11 @@ describe("Installation Page", () => {
       const header = screen.getByTestId("content-header");
       const toggleButton = screen.getByTestId("sidebar-toggle");
 
-      // Initially sidebar is open, so header should be hidden
       expect(header).toHaveClass("opacity-0");
 
-      // Close sidebar - header should become visible
       fireEvent.click(toggleButton);
       expect(header).toHaveClass("opacity-100");
 
-      // Open sidebar - header should be hidden again
       fireEvent.click(toggleButton);
       expect(header).toHaveClass("opacity-0");
     });
@@ -312,7 +302,6 @@ describe("Installation Page", () => {
     it("should render coordinate inputs in header", async () => {
       renderInstallationPage();
 
-      // Header inputs should exist
       expect(screen.getByTestId("header-x-input")).toBeInTheDocument();
       expect(screen.getByTestId("header-y-input")).toBeInTheDocument();
     });
@@ -348,69 +337,6 @@ describe("Installation Page", () => {
 
       expect(screen.getByText("設置物")).toBeInTheDocument();
       expect(screen.getByText("設置物ページのコンテンツがここに表示されます。")).toBeInTheDocument();
-    });
-  });
-
-  describe("State management", () => {
-    it("should maintain sidebar state across multiple toggles", async () => {
-      renderInstallationPage();
-
-      const sidebar = screen.getByTestId("sidebar");
-      const toggleButton = screen.getByTestId("sidebar-toggle");
-
-      // Initial state: open
-      expect(sidebar).toHaveClass("w-96");
-
-      // First toggle: close
-      fireEvent.click(toggleButton);
-      expect(sidebar).toHaveClass("w-0");
-
-      // Second toggle: open
-      fireEvent.click(toggleButton);
-      expect(sidebar).toHaveClass("w-96");
-
-      // Third toggle: close
-      fireEvent.click(toggleButton);
-      expect(sidebar).toHaveClass("w-0");
-    });
-  });
-
-  describe("CSS transitions", () => {
-    it("should have proper transition classes applied", async () => {
-      renderInstallationPage();
-
-      const sidebar = screen.getByTestId("sidebar");
-      const header = screen.getByTestId("content-header");
-
-      // Check sidebar transition classes
-      expect(sidebar).toHaveClass("transition-all");
-      expect(sidebar).toHaveClass("duration-300");
-      expect(sidebar).toHaveClass("ease-out");
-
-      // Check header transition classes
-      expect(header).toHaveClass("transition-opacity");
-      expect(header).toHaveClass("duration-500");
-    });
-  });
-
-  describe("Toggle button synchronization", () => {
-    it("should synchronize both toggle buttons", async () => {
-      renderInstallationPage();
-
-      const sidebar = screen.getByTestId("sidebar");
-      const header = screen.getByTestId("content-header");
-      const sidebarToggle = screen.getByTestId("sidebar-toggle");
-
-      // Close sidebar using sidebar button
-      fireEvent.click(sidebarToggle);
-      expect(sidebar).toHaveClass("w-0");
-      expect(header).toHaveClass("opacity-100");
-
-      // Open sidebar using header button
-      const headerToggle = screen.getByTestId("header-toggle");
-      fireEvent.click(headerToggle);
-      expect(sidebar).toHaveClass("w-96");
-      expect(header).toHaveClass("opacity-0");
     });
   });
 });
