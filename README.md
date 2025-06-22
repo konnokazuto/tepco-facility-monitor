@@ -13,7 +13,7 @@
 
 ```bash
 git clone [repository-url]
-cd tepco-facility-monitor
+cd t-facimoni-frontend
 ```
 
 ### 2. 依存関係のインストール
