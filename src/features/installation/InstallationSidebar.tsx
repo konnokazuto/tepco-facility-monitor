@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { InstallationTypeFilter } from "@/features/installation/InstallationTypeFilter";
 
-export function GlobalSideBar() {
+export function InstallationSidebar() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [selectedInstallationTypes, setSelectedInstallationTypes] = useState<string[]>([]);
   const [previousTypes, setPreviousTypes] = useState<string[]>([]);

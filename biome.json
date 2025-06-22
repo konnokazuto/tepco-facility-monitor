@@ -37,11 +37,33 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "style": {
-        "noNonNullAssertion": "off"
+      "correctness": {
+        "noUnreachable": "error",
+        "noUndeclaredVariables": "error",
+        "useExhaustiveDependencies": "warn"
       },
       "suspicious": {
-        "noExplicitAny": "off"
+        "noDebugger": "error",
+        "noDuplicateCase": "error",
+        "noFallthroughSwitchClause": "error",
+        "noExplicitAny": "off",
+        "noArrayIndexKey": "off",
+        "noConsoleLog": "warn"
+      },
+      "a11y": {
+        "useButtonType": "off",
+        "useAltText": "off"
+      },
+      "style": {
+        "noVar": "error",
+        "useConst": "warn",
+        "noNonNullAssertion": "off",
+        "useNodejsImportProtocol": "off"
+      },
+      "complexity": {
+        "noBannedTypes": "off",
+        "noUselessFragments": "off",
+        "noForEach": "off"
       }
     }
   },

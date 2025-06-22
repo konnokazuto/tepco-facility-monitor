@@ -9,7 +9,7 @@ const GlobalHeader = () => {
   ];
 
   return (
-    <header className="w-full fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm pr-8">
+    <header className="w-full bg-white border-b border-gray-200 shadow-sm pr-8">
       <div className="flex h-16 justify-between items-center">
         <nav className="flex items-center h-full">
           {tabs.map((tab) => (

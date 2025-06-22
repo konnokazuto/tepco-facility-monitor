@@ -36,33 +36,6 @@ npm run dev
 
 ブラウザで http://localhost:5173 にアクセスしてください。
 
-## 利用可能なスクリプト
-
-```bash
-# 開発サーバーの起動
-npm run dev
-
-# プロダクションビルド
-npm run build
-
-# ビルドのプレビュー
-npm run preview
-
-# ESLintの実行
-npm run lint
-
-# Biomeでコードフォーマット
-npm run format
-
-# Biomeでフォーマットチェック（CIで使用）
-npm run format:check
-
-# Biomeで総合チェック（lint + format）
-npm run biome:check
-
-# Biomeで自動修正
-npm run biome:fix
-```
 
 ## ディレクトリ構成
 
@@ -72,28 +45,13 @@ tepco-facility-monitor/
 ├── .vscode/                  # VSCode設定
 ├── public/                   # 静的ファイル
 ├── src/                      # ソースコード
-│   ├── assets/              # 画像などの静的アセット
-│   ├── components/          # Reactコンポーネント
-│   │   ├── common/         # 共通コンポーネント
-│   │   │   ├── GlobalHeader.tsx
-│   │   │   └── GlobalSideBar.tsx
-│   │   └── ui/            # UIコンポーネント（shadcn/ui）
-│   ├── features/           # 機能別モジュール
-│   │   ├── admin/         # 管理者機能（空）
-│   │   ├── application/   # アプリケーション機能（空）
-│   │   ├── dashboard/     # ダッシュボード機能
-│   │   │   └── MapComponent.tsx
-│   │   └── installation/  # 施設管理機能
-│   │       └── InstallationTypeFilter.tsx
+│   ├── components/          # 汎用・再利用可能なコンポーネント
+│   │   ├── common/         # アプリ共通コンポーネント
+│   │   └── ui/            # shadcn/uiベースのUIコンポーネント
+│   ├── features/           # 機能別・ページ固有のコンポーネント（dashboard/, installation/など）
 │   ├── hooks/             # カスタムフック
 │   ├── lib/               # ユーティリティ関数
 │   ├── routes/            # ルーティング設定
-│   │   ├── __root.tsx
-│   │   ├── admin.tsx
-│   │   ├── application.tsx
-│   │   ├── index.tsx
-│   │   └── installation.tsx
-│   ├── App.css            # アプリケーションスタイル（未使用）
 │   ├── App.tsx            # メインアプリケーション
 │   ├── index.css          # グローバルスタイル
 │   ├── main.tsx           # エントリーポイント
@@ -121,19 +79,18 @@ npx shadcn@latest add dialog
 npx shadcn@latest add form
 ```
 
-利用可能なコンポーネント: https://ui.shadcn.com/docs/components/accordion
+利用可能なコンポーネント: https://ui.shadcn.com/docs/components
 
 ### コード品質の維持
 
 このプロジェクトでは、コード品質を維持するために以下のツールを使用しています：
 
 - **Biome**: コードフォーマットとlinting
-- **TypeScript**: 型安全性の確保
 - **Husky + lint-staged**: コミット時の自動チェック
 
 ### 自動フォーマット
 
-- VSCodeを使用している場合、保存時に自動的にコードがフォーマットされます
+- VSCode(Cursor)を使用している場合、保存時に自動的にコードがフォーマットされます
 - 手動でフォーマットする場合: `npm run format`
 - コミット時にも自動的にフォーマットが実行されます
 
