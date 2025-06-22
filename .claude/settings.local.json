@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(env)",
+      "Bash(ls:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(mcp list:*)",
+      "Bash(cat:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run lint)",
+      "Bash(npx tsc:*)",
+      "Bash(npx:*)",
+      "Bash(rm:*)",
+      "mcp__puppeteer__puppeteer_navigate",
+      "Bash(claude mcp connect figma)"
+    ],
+    "deny": []
+  }
+}
